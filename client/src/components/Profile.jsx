@@ -52,7 +52,7 @@ export default function Profile() {
                     <button className="bg-violet-500 my-5 rounded p-2 hover:bg-violet-700 text-white cursor-pointer">Update Profile</button>
                 </div>
                 <div>
-                    <button className="bg-red-500 p-2 rounded my-5 text-white hover:bg-red-700">Log Out</button>
+                    <button className="bg-red-700 p-2 rounded my-5 text-white hover:bg-red-800">Log Out</button>
                 </div>
             </div>
         </div>

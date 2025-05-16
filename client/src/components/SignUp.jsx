@@ -15,7 +15,7 @@ export default function SignUp() {
                 {/* Dummy url to admin page */}
                 <div className="flex justify-center">
 
-                <Link  to="/employees">admin?</Link>
+                <Link  to="/login">admin? Login</Link>
                 </div>
 
                 {/* ------------------------------------------------------------------------- */}
