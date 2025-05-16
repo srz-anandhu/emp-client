@@ -9,18 +9,18 @@ export default function SignUp() {
         <div className=" min-h-screen flex items-center justify-center flex-col bg-blue-200">
             {/* Header component */}
             <Header />
-            <form className="w-96 h-auto  bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-md relative overflow-hidden">
+            <form className="w-96 bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-2xl ">
                 <h2 className="text-2xl font-bold text-center my-2">Signup!</h2>
                 {/* Name Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="name" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Name" />
                 </div>
                 {/* Email Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="email" className="text-sm px-4 py-1 border border-gray-300 rounded-md
-                                 focus:border-gray-500 focus:border-2
+                                 focus:border-gray-200 focus:border-2
                                  focus:outline-none w-80  placeholder-white"
                         type="email" placeholder="Email" />
 
@@ -28,38 +28,38 @@ export default function SignUp() {
                 {/* Password Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="password" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="password" placeholder="Password" />
                 </div>
                 {/* Phone number Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="phone" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Phone" />
                 </div>
 
                 {/* Address Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="address" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Address" />
                 </div>
                 {/* DOB Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="dob" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="DOB (DD/MM/YY)" />
                 </div>
                 {/* Salary Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="salary" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="number" placeholder="Salary" />
                 </div>
                 {/* Position Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="position" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
-                                      focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
+                                      focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Current Position" />
                 </div>
 
