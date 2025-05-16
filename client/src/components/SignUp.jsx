@@ -1,23 +1,25 @@
 import { Link } from "react-router-dom";
+import Header from "./Header";
 
 export default function SignUp() {
 
 
     return (
 
-        <div className=" min-h-screen flex items-center justify-center bg-blue-200">
-
-            <form  className="w-96 h-auto  bg-gradient-to-r from-blue-400 to-violet-300 rounded-lg shadow-md relative overflow-hidden">
+        <div className=" min-h-screen flex items-center justify-center flex-col bg-blue-200">
+            {/* Header component */}
+            <Header />
+            <form className="w-96 h-auto  bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-md relative overflow-hidden">
                 <h2 className="text-2xl font-bold text-center my-2">Signup!</h2>
                 {/* Name Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="name"  className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
+                    <input name="name" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
                                       focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Name" />
                 </div>
                 {/* Email Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="email"  className="text-sm px-4 py-1 border border-gray-300 rounded-md
+                    <input name="email" className="text-sm px-4 py-1 border border-gray-300 rounded-md
                                  focus:border-gray-500 focus:border-2
                                  focus:outline-none w-80  placeholder-white"
                         type="email" placeholder="Email" />
@@ -25,7 +27,7 @@ export default function SignUp() {
                 </div>
                 {/* Password Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="password"  className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
+                    <input name="password" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
                                       focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
                         type="password" placeholder="Password" />
                 </div>
@@ -38,7 +40,7 @@ export default function SignUp() {
 
                 {/* Address Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="address"  className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
+                    <input name="address" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
                                       focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Address" />
                 </div>
@@ -50,33 +52,33 @@ export default function SignUp() {
                 </div>
                 {/* Salary Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="salary"  className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
+                    <input name="salary" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
                                       focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
                         type="number" placeholder="Salary" />
                 </div>
                 {/* Position Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="position"  className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
+                    <input name="position" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300 
                                       focus:border-gray-500 focus:outline-none focus:border-2  placeholder-white"
                         type="text" placeholder="Current Position" />
                 </div>
 
                 <div className=" mt-6 flex justify-center flex-col items-center">
-                   <Link
-              to="/login"
-              className="text-sm text-black hover:underline mb-3"
-            >
-              Already have an account? Login
-            </Link>
+                    <Link
+                        to="/login"
+                        className="text-sm text-black hover:underline mb-3"
+                    >
+                        Already have an account? Login
+                    </Link>
                     <button type="submit" className="bg-blue-500 px-6 py-2 font-bold text-white rounded-md hover:bg-blue-600 transition-colors
                                                       cursor-pointer mb-4"
                     >
                         Get-In</button>
-                        
+
                 </div>
             </form>
         </div>
-        
+
     )
 }
 
