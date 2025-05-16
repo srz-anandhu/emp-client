@@ -1,4 +1,5 @@
 import Header from "./Header";
+import { Link } from 'react-router-dom'
 
 export default function() {
     return (
@@ -28,7 +29,8 @@ export default function() {
                                                       cursor-pointer mb-4"
                     >
                         Log-In</button>
-
+                        {/* dummy link to watch emp profile */}
+        <Link to="/profile"> emp profile</Link>
                 </div>
             </form>
         </div>
