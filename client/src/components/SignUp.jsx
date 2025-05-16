@@ -11,6 +11,15 @@ export default function SignUp() {
             <Header />
             <form className="w-96 bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-2xl ">
                 <h2 className="text-2xl font-bold text-center my-2">Signup!</h2>
+                {/* -------------------------------------------------------------- */}
+                {/* Dummy url to admin page */}
+                <div className="flex justify-center">
+
+                <Link  to="/employees">admin?</Link>
+                </div>
+
+                {/* ------------------------------------------------------------------------- */}
+                
                 {/* Name Input */}
                 <div className="mt-6 flex justify-center">
                     <input name="name" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
