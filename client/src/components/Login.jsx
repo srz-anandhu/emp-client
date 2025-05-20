@@ -1,16 +1,67 @@
+import { useState } from "react";
 import Header from "./Header";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from "axios";
 
 export default function() {
+
+    const [formData, setFormData] = useState({
+        email : "",
+        password : ""
+    })
+
+    const navigate = useNavigate();
+
+const handleChange = (e) => {
+    setFormData((prev) => ( {
+        ...prev, [e.target.name] : e.target.value
+    }))
+}
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await axios.post("http://localhost:8080/employee/login", formData,
+            {
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            }
+        )
+
+        if (response.status === 200) {
+
+            const { accessToken, refreshToken, user } = response.data
+
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            localStorage.setItem("user", JSON.stringify(user));
+
+            alert("successfully logged in")
+            navigate("/profile")
+        }
+
+    } catch (err) {
+        if (err.response && err.response.data) {
+            alert(err.response.data.message || "Login failed")
+        } else {
+            alert("Server error")
+        }
+        console.error(err)
+    }
+}
+
+   
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-blue-200">
             <Header />
-            <form className="w-96 bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-2xl ">
+            <form onSubmit={handleSubmit}  className="w-96 bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-2xl ">
                 <h2 className="text-2xl font-bold text-center my-2">Login!</h2>
 
                 {/* Email Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="email" className="text-sm px-4 py-1 border border-gray-300 rounded-md
+                    <input onChange={handleChange} name="email" className="text-sm px-4 py-1 border border-gray-300 rounded-md
                                  focus:border-gray-200 focus:border-2
                                  focus:outline-none w-80  placeholder-white"
                         type="email" placeholder="Email" />
@@ -18,7 +69,7 @@ export default function() {
                 </div>
                 {/* Password Input */}
                 <div className="mt-6 flex justify-center">
-                    <input name="password" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
+                    <input onChange={handleChange} name="password" className="text-sm px-4 py-1 border w-80 rounded-md border-gray-300
                                       focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="password" placeholder="Password" />
                 </div>
@@ -29,8 +80,8 @@ export default function() {
                                                       cursor-pointer mb-4"
                     >
                         Log-In</button>
-                        {/* dummy link to watch emp profile */}
-        <Link to="/profile"> emp profile</Link>
+                    
+        
                 </div>
             </form>
         </div>
