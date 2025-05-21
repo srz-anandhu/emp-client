@@ -44,12 +44,16 @@ export default function SignUp() {
             }
         }
        )
-       if (response.status === 201) {
-        const { accessToken, refreshToken, user } = response.data;
+
+      // console.log("Full api log :", response.data);
+       
+       if (response.data.status === 'ok') {
+        const { token, refresh_token } = response.data.result;
+        const user = response.data.result.EmployeeResp;
 
         // saving tokens and user informations in local storage
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("accessToken", token);
+        localStorage.setItem("refreshToken", refresh_token);
         localStorage.setItem("user", JSON.stringify(user));
            alert("signup successful");
            navigate("/login");
