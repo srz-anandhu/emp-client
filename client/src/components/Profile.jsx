@@ -71,7 +71,7 @@ export default function Profile() {
                     </div>
                     <div>
                         <p className="text-gray-700 text-sm">Email</p>
-                        <h2 className="font-semibold text-lg">{user?.emial || 'Not Provided'}</h2>
+                        <h2 className="font-semibold text-lg">{user?.email || 'Not Provided'}</h2>
                     </div>
                     <div>
                         <p className="text-gray-700 text-sm">Password</p>
