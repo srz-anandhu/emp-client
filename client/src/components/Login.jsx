@@ -30,12 +30,14 @@ const handleSubmit = async (e) => {
             }
         )
 
-        if (response.status === 200) {
+        if (response.data.status === 'ok') {
 
-            const { accessToken, refreshToken, user } = response.data
+            const { token, refresh_token } = response.data.result;
 
-            localStorage.setItem("accessToken", accessToken);
-            localStorage.setItem("refreshToken", refreshToken);
+            const user = response.data.result.EmpResp;
+
+            localStorage.setItem("accessToken", token);
+            localStorage.setItem("refreshToken", refresh_token);
             localStorage.setItem("user", JSON.stringify(user));
 
             alert("successfully logged in")
