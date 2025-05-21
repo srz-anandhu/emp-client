@@ -7,10 +7,12 @@ export default function Profile() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         try {
             // Check if user data exists in localStorage
             const userData = localStorage.getItem('user');
+
 
             if (!userData) {
                 throw new Error('No user session found');
@@ -33,6 +35,25 @@ export default function Profile() {
             setTimeout(() => navigate("/login"), 2000);
         }
     }, [navigate]);
+
+     // logout
+    const handleLogout = (e) => {
+        try {
+
+            localStorage.removeItem('accessToken')
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+
+            navigate("/login")
+
+        } catch (err) {
+            console.error('Logout error:', err);
+            alert('Failed to logout properly.Please clear your browser cache.')
+        }
+        localStorage.removeItem("user");
+
+        navigate("/login");
+    }
 
         if (loading) {
         return (
@@ -108,7 +129,7 @@ export default function Profile() {
                     <button className="bg-violet-500 my-5 rounded p-2 hover:bg-violet-700 text-white cursor-pointer">Update Profile</button>
                 </div>
                 <div>
-                    <button className="bg-red-700 p-2 rounded my-5 text-white hover:bg-red-800">Log Out</button>
+                    <button onClick={handleLogout} className="bg-red-700 p-2 rounded my-5 text-white hover:bg-red-800">Log Out</button>
                 </div>
             </div>
         </div>
