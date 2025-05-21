@@ -47,6 +47,12 @@ export default function SignUp() {
        if (response.status === 201) {
         const { accessToken, refreshToken, user } = response.data;
 
+        console.log("accessToken: ", accessToken)
+        console.log("refreshToken: ", refreshToken);
+        console.log("user: ", user);
+        
+        
+
         // saving tokens and user informations in local storage
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
