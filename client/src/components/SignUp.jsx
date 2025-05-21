@@ -51,6 +51,12 @@ export default function SignUp() {
         const { token, refresh_token } = response.data.result;
         const user = response.data.result.EmployeeResp;
 
+        console.log("accessToken: ", accessToken)
+        console.log("refreshToken: ", refreshToken);
+        console.log("user: ", user);
+        
+        
+
         // saving tokens and user informations in local storage
         localStorage.setItem("accessToken", token);
         localStorage.setItem("refreshToken", refresh_token);
