@@ -140,6 +140,7 @@ export default function Profile() {
                         Name,
                         Email,
                         Phone,
+                        DOB,
                         Position,
                         Address,
                         Salary
@@ -150,6 +151,7 @@ export default function Profile() {
                         name: Name || '',
                         email: Email || user.email,
                         phone: Phone || '',
+                        dob: DOB,
                         position: Position || '',
                         address: Address || '',
                         salary: Salary || 0
@@ -250,6 +252,18 @@ export default function Profile() {
                                     pattern="[0-9]{10}"
                                 />
                             </div>
+                               <div>
+                                <label className="block text-gray-700 text-sm mb-1">DOB</label>
+                                <input
+                                   type="text"
+                                    name="dob"
+                                    value={formData.dob || ''}
+                                    onChange={handleChange}
+                                    className="w-full p-2 border rounded"
+                                    required
+                                    
+                                />
+                            </div>
                             <div>
                                 <label className="block text-gray-700 text-sm mb-1">Position</label>
                                 <input
@@ -325,6 +339,10 @@ export default function Profile() {
                             <div>
                                 <p className="text-gray-700 text-sm">Email</p>
                                 <h2 className="font-semibold text-lg">{user?.email || 'Not Provided'}</h2>
+                            </div>
+                              <div>
+                                <p className="text-gray-700 text-sm">DOB</p>
+                                <h2 className="font-semibold text-lg">{user?.dob || 'Not Provided'}</h2>
                             </div>
                 
                             <div>
