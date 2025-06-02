@@ -63,10 +63,58 @@ export default function Profile() {
 
     // Password change
     const handlePasswordChange = (e) => {
-        const { name, value } = e.target.value;
+        const { name, value } = e.target;
         setPassword((prev) => ({
             ...prev, [name]: value
         }));
+    }
+
+    // password submit
+    const handlePasswordUpdate = async (e) => {
+        e.preventDefault();
+        setPasswordUpdateLoading(true);
+        setPasswordUpdateError(null);
+
+        if (password.new_password !== password.confirm_password) {
+            setPasswordUpdateError("New password and confirm password do not match");
+            setPasswordUpdateLoading(false);
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem("refreshToken");
+            if (!token) {
+                throw new Error("No token found");
+            }
+
+            const response = await axios.put(
+                `http://localhost:8080/employee/${user.id}/password`, password,
+                {
+                    headers : {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+
+            alert("password updated successfully !");
+            // Clearing password fields after updation
+            setPassword({
+                current_password : '',
+                new_password : '',
+                confirm_password : ''
+            })
+
+            setIsEditing(false);
+        } catch (err) {
+            console.error(err);
+            //setPassword(password);
+            const errorMessage = err.response?.data?.message || err.message;
+            setPasswordUpdateError(errorMessage);
+            
+        } finally {
+            setPasswordUpdateLoading(false);
+        }
     }
 
     // logout
@@ -345,7 +393,7 @@ export default function Profile() {
                                  {/* password changing */}
                     <div>
                                 <hr className="my-6" />
-                                <form onSubmit={"*"} className="mt-6">
+                                <form onSubmit={handlePasswordUpdate} className="mt-6">
                                     <h3 className="font-semibold text-gray-700 mb-4">Change Password</h3>
                                     {/* if update error */}
                                     {passwordUpdateError && (
@@ -395,7 +443,9 @@ export default function Profile() {
                                         className="bg-purple-500 p-2 px-4 hover:bg-purple-700 text-white rounded">
                                             {passwordUpdateLoading ? "Updating...": "Change Password"}
                                         </button>
+                                        
                                     </div>
+                                    
                                 </form>
 
                     </div>
