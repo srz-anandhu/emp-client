@@ -6,10 +6,22 @@ export default function Profile() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({});
+
     const [updateLoading, setUpdateLoading] = useState(false);
     const [updateError, setUpdateError] = useState(null);
+
+    const [password, setPassword] = useState({
+        current_password: '',
+        new_password: '',
+        confirm_password: ''
+    });
+
+    const [passwordUpdateError, setPasswordUpdateError] = useState(null);
+    const [passwordUpdateLoading, setPasswordUpdateLoading] = useState(false);
+
     const navigate = useNavigate();
 
 
@@ -49,6 +61,14 @@ export default function Profile() {
         }
     }
 
+    // Password change
+    const handlePasswordChange = (e) => {
+        const { name, value } = e.target.value;
+        setPassword((prev) => ({
+            ...prev, [name]: value
+        }));
+    }
+
     // logout
     const handleLogout = (e) => {
         try {
@@ -82,10 +102,10 @@ export default function Profile() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        let processedValue = value;
-        if (name === 'salary') {
-            processedValue = value === '' ? '' : Number(value);
-        }
+        // let processedValue = value;
+        // if (name === 'salary') {
+        //     processedValue = value === '' ? '' : Number(value);
+        // }
         setFormData(prev => ({
             ...prev, [name]: value
         }))
@@ -111,7 +131,7 @@ export default function Profile() {
             console.log(formData);
 
 
-            
+
 
             // API call to update employee data
             const response = await axios.put(
@@ -145,7 +165,7 @@ export default function Profile() {
                         Address,
                         Salary
                     } = fetchResponse.data?.result;
-                    
+
                     const updatedUser = {
                         id: ID || '',
                         name: Name || '',
@@ -233,13 +253,13 @@ export default function Profile() {
                                     type="email"
                                     name="email"
                                     value={formData.email || ''}
-                                     onChange={handleChange}
+                                    onChange={handleChange}
                                     className="w-full p-2 border rounded bg-gray-100"
                                     disabled
                                 />
                             </div>
-             
-                  
+
+
                             <div>
                                 <label className="block text-gray-700 text-sm mb-1">Phone</label>
                                 <input
@@ -252,16 +272,16 @@ export default function Profile() {
                                     pattern="[0-9]{10}"
                                 />
                             </div>
-                               <div>
+                            <div>
                                 <label className="block text-gray-700 text-sm mb-1">DOB</label>
                                 <input
-                                   type="text"
+                                    type="text"
                                     name="dob"
                                     value={formData.dob || ''}
                                     onChange={handleChange}
                                     className="w-full p-2 border rounded"
                                     required
-                                    
+
                                 />
                             </div>
                             <div>
@@ -274,7 +294,7 @@ export default function Profile() {
                                     className="w-full p-2 border rounded"
                                 />
                             </div>
-                              <div>
+                            <div>
                                 <label className="block text-gray-700 text-sm mb-1">Salary</label>
                                 <input
                                     type="text"
@@ -322,12 +342,68 @@ export default function Profile() {
                         </div>
                     </form>
 
-                    
+                                 {/* password changing */}
+                    <div>
+                                <hr className="my-6" />
+                                <form onSubmit={"*"} className="mt-6">
+                                    <h3 className="font-semibold text-gray-700 mb-4">Change Password</h3>
+                                    {/* if update error */}
+                                    {passwordUpdateError && (
+                                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+                                            {passwordUpdateError}
+                                        </div>
+                                    )}
+
+                                    <div className="grid sm:grid-cols-2 gap-5 mb-4">
+                                         <div>
+                                            <label className="block text-gray-700 text-sm mb-1">Current Password</label>
+                                            <input 
+                                                type="password"
+                                                name="current_password"
+                                                value={password.current_password}
+                                                onChange={handlePasswordChange}
+                                                className="w-full border rounded p-2"
+                                                required
+                                            />
+                                         </div>
+                                         <div>
+                                            <label className="block text-gray-700 text-sm mb-1">New Password</label>
+                                            <input 
+                                                type="password"
+                                                name="new_password"
+                                                value={password.new_password}
+                                                onChange={handlePasswordChange}
+                                                className="w-full border rounded p-2"
+                                                required
+                                            />
+                                         </div>
+                                         <div>
+                                            <label className="block text-gray-700 text-sm mb-1">Confirm Password</label>
+                                            <input 
+                                                type="password"
+                                                name="confirm_password"
+                                                value={password.confirm_password}
+                                                onChange={handlePasswordChange}
+                                                className="w-full border rounded p-2"
+                                                required 
+                                            />
+                                         </div>
+                                    </div>
+                                    {/* password change button */}
+                                    <div className="flex justify-end mt-2">
+                                        <button type="submit"
+                                        className="bg-purple-500 p-2 px-4 hover:bg-purple-700 text-white rounded">
+                                            {passwordUpdateLoading ? "Updating...": "Change Password"}
+                                        </button>
+                                    </div>
+                                </form>
+
+                    </div>
                 </div>
             ) : (
                 <>
                     <div className="bg-gradient-to-r from-blue-300 to-violet-300 rounded-xl shadow-xl p-8 w-full max-w-2xl">
-                        <div className="grid sm:grid-cols-2 gap-5">
+                        <div className="grid sm:grid-cols-3 gap-6">
                             <div>
                                 <p className="text-gray-700 text-sm">Employee ID</p>
                                 <h2 className="font-semibold text-lg">{user?.id || 'N/A'}</h2>
@@ -340,11 +416,11 @@ export default function Profile() {
                                 <p className="text-gray-700 text-sm">Email</p>
                                 <h2 className="font-semibold text-lg">{user?.email || 'Not Provided'}</h2>
                             </div>
-                              <div>
+                            <div>
                                 <p className="text-gray-700 text-sm">DOB</p>
                                 <h2 className="font-semibold text-lg">{user?.dob || 'Not Provided'}</h2>
                             </div>
-                
+
                             <div>
                                 <p className="text-gray-700 text-sm">Phone</p>
                                 <h2 className="font-semibold text-lg">{user?.phone || 'Not Provided'}</h2>
@@ -353,7 +429,7 @@ export default function Profile() {
                                 <p className="text-gray-700 text-sm">Position</p>
                                 <h2 className="font-semibold text-lg">{user?.position || 'Not Provided'}</h2>
                             </div>
-                             <div>
+                            <div>
                                 <p className="text-gray-700 text-sm">Salary</p>
                                 <h2 className="font-semibold text-lg">{user?.salary || 'Not Provided'}</h2>
                             </div>
