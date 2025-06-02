@@ -1,5 +1,13 @@
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function ListEmp() {
+
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     return (
         // want to show employees by looping..now its a dummy data from profile page
                <div className="w-full bg-blue-200 min-h-screen flex flex-col items-center py-10">

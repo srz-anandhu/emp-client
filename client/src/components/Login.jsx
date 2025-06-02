@@ -75,8 +75,15 @@ const handleSubmit = async (e) => {
                                       focus:border-gray-200 focus:outline-none focus:border-2  placeholder-white"
                         type="password" placeholder="Password" />
                 </div>
+                 
 
                 <div className=" mt-6 flex justify-center flex-col items-center">
+                     <Link
+                        to="/"
+                        className="text-sm text-black hover:underline mb-3"
+                    >
+                        Don't have an account? Signup
+                    </Link>
  
                     <button type="submit" className="bg-blue-500 px-6 py-2 font-bold text-white rounded-md hover:bg-blue-600 transition-colors
                                                       cursor-pointer mb-4"

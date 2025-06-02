@@ -51,8 +51,8 @@ export default function SignUp() {
         const { token, refresh_token } = response.data.result;
         const user = response.data.result.EmployeeResp;
 
-        console.log("accessToken: ", accessToken)
-        console.log("refreshToken: ", refreshToken);
+        console.log("accessToken: ", token)
+        console.log("refreshToken: ", refresh_token);
         console.log("user: ", user);
         
         
