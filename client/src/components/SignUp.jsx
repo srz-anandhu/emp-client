@@ -84,14 +84,6 @@ export default function SignUp() {
             <Header />
             <form onSubmit={handleSubmit}  className="w-96 bg-gradient-to-r from-blue-400 to-violet-400 rounded-lg shadow-2xl ">
                 <h2 className="text-2xl font-bold text-center my-2">Signup!</h2>
-                {/* -------------------------------------------------------------- */}
-                {/* Dummy url to admin page */}
-                <div className="flex justify-center">
-
-                <Link  to="/login">admin? Login</Link>
-                </div>
-
-                {/* ------------------------------------------------------------------------- */}
                 
                 {/* Name Input */}
                 <div className="mt-6 flex justify-center">
