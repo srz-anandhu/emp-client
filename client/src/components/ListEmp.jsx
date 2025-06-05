@@ -12,7 +12,7 @@ export default function ListEmp() {
         // want to show employees by looping..now its a dummy data from profile page
                <div className="w-full bg-blue-200 min-h-screen flex flex-col items-center py-10">
     
-            <h1 className="text-4xl font-bold text-blue-700 mb-8">All Employees (only for admin)</h1>
+            <h1 className="text-4xl font-bold text-blue-700 mb-8">All Employees</h1>
 
             {/* Profile Card */}
             <div className="bg-gradient-to-r from-blue-300 to-violet-300 rounded-xl shadow-xl p-8 w-full max-w-2xl mb-5">
