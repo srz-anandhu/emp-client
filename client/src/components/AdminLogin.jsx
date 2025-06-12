@@ -46,7 +46,7 @@ export default function AdminLogin() {
             localStorage.setItem('token', token);
             localStorage.setItem('refreshToken', refresh_token);
             localStorage.setItem('role', role);
-            navigate("/employees")
+            navigate("/admin/dashboard")
             
            }
             
