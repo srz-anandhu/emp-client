@@ -390,6 +390,7 @@ export default function Profile() {
                         </div>
                     </form>
 
+
                                  {/* password changing */}
                     <div>
                                 <hr className="my-6" />
