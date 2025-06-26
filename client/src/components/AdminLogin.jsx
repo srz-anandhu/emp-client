@@ -25,7 +25,7 @@ export default function AdminLogin() {
 
         try {
 
-            const response = await axios.post("http://localhost:8080/admin/login", 
+            const response = await axios.post("http://4.247.174.131:5000/admin/login", 
                 adminFormData,
                 {
                     headers : {

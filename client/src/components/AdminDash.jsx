@@ -21,7 +21,7 @@ export default function AdminDash() {
                 </button>
 
                 <button
-                    onClick={() => navigate("/employees")}
+                    // onClick={() => navigate("/employees")}
                     className="w-full bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-700 transition mb-4"
                 >
                     ✏️ Update Employee Details
@@ -35,7 +35,7 @@ export default function AdminDash() {
                 </button>
 
                 <button
-                    onClick={() => navigate("/employees")}
+                    onClick={() => navigate("/admin/add-admin")}
                     className="w-full bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-700 transition"
                 >
                     👤 Add New Admin

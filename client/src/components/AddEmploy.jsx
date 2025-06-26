@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function AddEmployee() {
+
+    const navigate = useNavigate();
 
     const [employee, setEmployee] = useState({
         employee_id: "",
@@ -36,7 +38,7 @@ export default function AddEmployee() {
                 throw new Error("refresh token not found")
             }
 
-            const response = await axios.post("http://localhost:8080/admin/create", employee,
+            const response = await axios.post("http://4.247.174.131:5000/admin/create", employee,
                 {
                     headers: {
                         Authorization : `Bearer ${refreshToken}`,
@@ -49,6 +51,7 @@ export default function AddEmployee() {
 
                  console.log(employee);
             alert("added employee successfully")
+            navigate("/admin/dashboard")
             } else {
                 // backend responded with status = not ok
                 const backendError = response.data.error;
