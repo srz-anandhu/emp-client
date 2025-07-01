@@ -1,38 +1,42 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export default function ListEmp() {
     const navigate = useNavigate();
     const [employees, setEmployees] = useState([]); // Changed from single user to array
     const [loading, setLoading] = useState(true);
 
-    // Mock data - replace with actual API call
+    const fetchEmployees = async () => {
+        try {
+
+            const refreshToken = localStorage.getItem("refreshToken");
+            if (!refreshToken) {
+                throw new Error("refresh token not found")
+            }
+
+            const response = await axios.get("http://4.247.174.131:5000/employee", 
+                {
+                    headers: {
+                        Authorization: `Bearer ${refreshToken}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+            console.log(response.data.result);
+            
+            setEmployees(response.data.result);
+        } catch (err) {
+            console.error("Failed to fetch employees:", err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+
     useEffect(() => {
-        const mockEmployees = [
-            {
-                id:1,
-                employee_id: "SRZEEE555",
-                name: "Anandhu Rajan",
-                email: "anandhu@gmail.com",
-                dob: "15/04/2001",
-                phone: "+91 7559048216",
-                address: "Gandhinagar mangalapuram",
-                salary: "₹55,000",
-                position: "Software Engineer"
-            },
-            {
-                id: 2,
-                name: "Aadhil Ahammad",
-                email: "aadhil@example.com",
-                dob: "20/05/1996",
-                phone: "9090909090",
-                address: "Mangalapuram Gandhinagar",
-                salary: "₹75,000",
-                position: "Senior Developer"
-            },
-            // Add more employees as needed
-        ];
-        setEmployees(mockEmployees);
-        setLoading(false);
+
+        fetchEmployees()
+
     }, []);
 
     if (loading) return <div>Loading...</div>;
@@ -44,43 +48,43 @@ export default function ListEmp() {
             {/* Employee Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {employees.map((emp) => (
-                    <div key={emp.id} className="bg-gradient-to-r from-blue-300 to-violet-300 rounded-xl shadow-xl p-6 hover:shadow-2xl transition-shadow">
+                    <div key={emp.EmployeeID} className="bg-gradient-to-r from-blue-300 to-violet-300 rounded-xl shadow-xl p-6 hover:shadow-2xl transition-shadow">
                         <div className="space-y-4">
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <h2 className="font-bold text-xl text-blue-800">{emp.name}</h2>
+                                    <h2 className="font-bold text-xl text-blue-800">{emp.FullName}</h2>
                                     <p className="text-blue-600">{emp.position}</p>
                                 </div>
                                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                                    {emp.salary}
+                                    {emp.Salary}
                                 </span>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <div>
+                                <div className="overflow-hidden">
                                     <p className="text-gray-700 text-xs">Email</p>
-                                    <p className="font-medium">{emp.email}</p>
+                                    <p className="font-medium truncate">{emp.Email}</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-700 text-xs">Phone</p>
-                                    <p className="font-medium">{emp.phone}</p>
+                                    <p className="font-medium">{emp.Phone}</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-700 text-xs">DOB</p>
-                                    <p className="font-medium">{emp.dob}</p>
+                                    <p className="font-medium">{emp.DOB}</p>
                                 </div>
                                 <div>
                                     <p className="text-gray-700 text-xs">Address</p>
-                                    <p className="font-medium line-clamp-1">{emp.address}</p>
+                                    <p className="font-medium line-clamp-1">{emp.Address}</p>
                                 </div>
                             </div>
 
-                            <button 
+                            {/* <button
                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition-colors"
                                 onClick={() => navigate(`/employee/${emp.id}`)}
                             >
                                 View Details
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 ))}
