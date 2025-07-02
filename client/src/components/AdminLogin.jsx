@@ -25,7 +25,7 @@ export default function AdminLogin() {
 
         try {
 
-            const response = await axios.post("http://localhost:8080/admin/login", 
+            const response = await axios.post("http://4.247.174.131:5000/admin/login", 
                 adminFormData,
                 {
                     headers : {
@@ -46,7 +46,7 @@ export default function AdminLogin() {
             localStorage.setItem('token', token);
             localStorage.setItem('refreshToken', refresh_token);
             localStorage.setItem('role', role);
-            navigate("/employees")
+            navigate("/admin/dashboard")
             
            }
             
