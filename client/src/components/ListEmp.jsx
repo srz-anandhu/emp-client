@@ -48,12 +48,13 @@ export default function ListEmp() {
             {/* Employee Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 {employees.map((emp) => (
-                    <div key={emp.EmployeeID} className="bg-gradient-to-r from-blue-300 to-violet-300 rounded-xl shadow-xl p-6 hover:shadow-2xl transition-shadow">
+                    <div key={emp.ID} className="bg-gradient-to-r from-blue-300 to-violet-300 rounded-xl shadow-xl p-6 hover:shadow-2xl transition-shadow">
                         <div className="space-y-4">
                             <div className="flex justify-between items-start">
                                 <div>
+                                    <p className="text-blue-600 font-bold">{emp.EmployeeID}</p>
                                     <h2 className="font-bold text-xl text-blue-800">{emp.FullName}</h2>
-                                    <p className="text-blue-600">{emp.position}</p>
+                                    <p className="text-blue-600">{emp.Position}</p>
                                 </div>
                                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                                     {emp.Salary}

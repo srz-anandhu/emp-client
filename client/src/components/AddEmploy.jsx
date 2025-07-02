@@ -61,9 +61,9 @@ export default function AddEmployee() {
             }
             
         } catch (err) {
-            // Network of axios parse error
+            
             console.error("employee creation error : ", err)
-            alert("Something went wrong while connecting to server.")
+            alert("Employee ID is already exist.")
         }
 
     }
