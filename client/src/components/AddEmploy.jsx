@@ -17,7 +17,9 @@ export default function AddEmployee() {
         salary: ""
     });
 
-    const [error, setError] = useState(null);
+    const [error, setError] = useState({
+        employee_id: ""
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -61,9 +63,20 @@ export default function AddEmployee() {
             }
             
         } catch (err) {
+           
+            if (
+                err.response &&
+                err.response.data &&
+                err.response.data.error &&
+                err.response.data.error.message.includes("duplicate")
+            ) {
+                setError({employee_id: "Employee ID already exists"})
+            } else {
+                setError({ employee_id: ""}) // clear any previous error
+            }
             
-            console.error("employee creation error : ", err)
-            alert("Employee ID is already exist.")
+             console.error("employee creation error : ", err)
+            alert("Something went wrong while creating employee.")
         }
 
     }
