@@ -20,6 +20,9 @@ function App() {
         <Route path="/" element={ < AdminLoginPage /> } />
 
         {/* <Route path="/" element={<SignupForm />} /> */}
+        {/* Login for employees */}
+        <Route path="/login" element={ <LoginForm />} />
+        
         <Route path="/profile" element={ <ProfilePage /> } />
         <Route path="/employees" element={ <ListEmpPage /> } />
       </Routes>
