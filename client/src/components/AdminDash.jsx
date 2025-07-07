@@ -5,41 +5,36 @@ export default function AdminDash() {
     const navigate = useNavigate();
 
     return (
-        <div className=" min-h-screen bg-blue-200 flex flex-col items-center">
+        <div className="min-h-screen bg-blue-200 flex flex-col items-center px-4">
             <Header />
-  
 
-                {/* <h2 className="text-3xl font-semibold mb-6 text-blue-700">Admin Dashboard</h2> */}
-                {/* <div className="bg-gray-200 w-[50px] h-[50px] rounded-4xl"></div> */}
-            <div className=" grid sm:grid-cols-2 gap-5 bg-gradient-to-r from-blue-300 to-purple-300 shadow-lg rounded-xl p-8 mt-10 w-96 text-center">
+            <div className="w-full max-w-xl mt-16">
+                <h2 className="text-3xl font-bold text-center text-blue-800 mb-8">
+                    Admin Dashboard
+                </h2>
 
-                <button
-                    onClick={() => navigate("/admin/addemployee")}
-                    className="w-full bg-blue-500 text-white py-3  rounded-xl hover:bg-blue-700 transition mb-4"
-                >
-                    ➕ Add New Employee
-                </button>
+                <div className="bg-gradient-to-r from-blue-300 to-purple-300 shadow-xl rounded-2xl p-8 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6">
+                    <button
+                        onClick={() => navigate("/admin/addemployee")}
+                        className="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition duration-200"
+                    >
+                        ➕ Add New Employee
+                    </button>
 
-                <button
-                    // onClick={() => navigate("/employees")}
-                    className="w-full bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-700 transition mb-4"
-                >
-                    ✏️ Update Employee Details
-                </button>
+                    <button
+                        onClick={() => navigate("/employees")}
+                        className="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition duration-200"
+                    >
+                        📋 View All Employees
+                    </button>
 
-                <button
-                    onClick={() => navigate("/employees")}
-                    className="w-full bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-700 transition"
-                >
-                    📋 View All Employees
-                </button>
-
-                <button
-                    onClick={() => navigate("/admin/add-admin")}
-                    className="w-full bg-blue-500 text-white py-3 rounded-xl hover:bg-blue-700 transition"
-                >
-                    👤 Add New Admin
-                </button>
+                    <button
+                        onClick={() => navigate("/admin/add-admin")}
+                        className="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition duration-200 col-span-full"
+                    >
+                        👤 Add New Admin
+                    </button>
+                </div>
             </div>
         </div>
     );
