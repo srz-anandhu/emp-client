@@ -17,7 +17,9 @@ export default function AddEmployee() {
         salary: ""
     });
 
-    const [error, setError] = useState(null);
+    const [error, setError] = useState({
+        employee_id: ""
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -61,9 +63,16 @@ export default function AddEmployee() {
             }
             
         } catch (err) {
-            
-            console.error("employee creation error : ", err)
-            alert("Employee ID is already exist.")
+           
+            if (
+
+                err?.response?.status === 409 ||
+                err?.response?.data?.message?.toLowerCase()?.includes("conflict")
+            ) {
+                setError( { employee_id: "Employee ID already exists" })
+            } else {
+                setError({employee_id: "Something went wrong. Try again." })
+            }
         }
 
     }
@@ -73,9 +82,13 @@ export default function AddEmployee() {
             <h1 className="text-4xl font-bold text-blue-800 mb-10">Add Employee</h1>
 
             <div className=" bg-gradient-to-r from-blue-300 to-purple-300 w-130  bg-white shadow-lg rounded-2xl p-10">
+    
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Employee ID</label>
+                        { error.employee_id && (
+                            <p className="text-sm text-red-500 mt-1">{error.employee_id}</p>
+                        )}
                         <input onChange={handleChange}
                             type="text"
                             name="employee_id"
