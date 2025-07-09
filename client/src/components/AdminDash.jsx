@@ -1,8 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { LogOut } from "lucide-react";
 
 export default function AdminDash() {
     const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("refreshToken")
+        localStorage.removeItem("token")
+
+        navigate("/")
+    }
 
     return (
         <div className="min-h-screen bg-blue-200 flex flex-col items-center px-4">
@@ -34,6 +42,17 @@ export default function AdminDash() {
                     >
                         👤 Add New Admin
                     </button>
+
+                    {/* Logout Button */}
+
+                    <button
+                        onClick={handleLogout}
+                        className="flex items-center justify-center gap-2 bg-red-500 text-black py-2 px-4 rounded-xl shadow hover:bg-red-600 transition col-span-full"
+                    >
+                        <LogOut size={20} color="black" />
+                        Logout
+                    </button>
+
                 </div>
             </div>
         </div>
