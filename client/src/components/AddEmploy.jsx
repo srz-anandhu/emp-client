@@ -39,11 +39,14 @@ export default function AddEmployee() {
             if (!refreshToken) {
                 throw new Error("refresh token not found")
             }
-
-            const response = await axios.post("http://4.247.174.131:5000/admin/create", employee,
+            const empData = { ...employee };
+            if (!empData.employee_id || empData.employee_id.trim() === "") {
+                delete empData.employee_id;
+            }
+            const response = await axios.post("http://4.247.174.131:5000/admin/create", empData,
                 {
                     headers: {
-                        Authorization : `Bearer ${refreshToken}`,
+                        Authorization: `Bearer ${refreshToken}`,
                         "Content-Type": "application/json"
                     }
                 }
@@ -51,9 +54,9 @@ export default function AddEmployee() {
             console.log(response.data);
             if (response.data.status === 'ok') {
 
-                 console.log(employee);
-            alert("added employee successfully")
-            navigate("/admin/dashboard")
+                console.log(employee);
+                alert("added employee successfully")
+                navigate("/admin/dashboard")
             } else {
                 // backend responded with status = not ok
                 const backendError = response.data.error;
@@ -61,17 +64,17 @@ export default function AddEmployee() {
                 console.error("Backend error:", backendError);
                 setError(backendError.message);
             }
-            
+
         } catch (err) {
-           
+
             if (
 
                 err?.response?.status === 409 ||
                 err?.response?.data?.message?.toLowerCase()?.includes("conflict")
             ) {
-                setError( { employee_id: "Employee ID already exists" })
+                setError({ employee_id: "Employee ID already exists" })
             } else {
-                setError({employee_id: "Something went wrong. Try again." })
+                setError({ employee_id: "Something went wrong. Try again." })
             }
         }
 
@@ -82,18 +85,20 @@ export default function AddEmployee() {
             <h1 className="text-4xl font-bold text-blue-800 mb-10">Add Employee</h1>
 
             <div className=" bg-gradient-to-r from-blue-300 to-purple-300 w-130  bg-white shadow-lg rounded-2xl p-10">
-    
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <form onSubmit={handleSubmit} autoComplete="off" className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Employee ID</label>
-                        { error.employee_id && (
+                        {error.employee_id && (
                             <p className="text-sm text-red-500 mt-1">{error.employee_id}</p>
                         )}
                         <input onChange={handleChange}
                             type="text"
+                            autoComplete="new-password"
                             name="employee_id"
+                            placeholder="Optional"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
-                            required
+
                         />
                     </div>
 
@@ -176,14 +181,14 @@ export default function AddEmployee() {
                             required
                         />
                     </div>
-                <div className="mt-5">
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition duration-300"
-                    >
-                        Add Employee
-                    </button>
-                </div>
+                    <div className="mt-5">
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition duration-300"
+                        >
+                            Add Employee
+                        </button>
+                    </div>
                 </form>
 
             </div>
