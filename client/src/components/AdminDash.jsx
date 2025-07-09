@@ -47,7 +47,7 @@ export default function AdminDash() {
 
                     <button
                         onClick={handleLogout}
-                        className="flex items-center justify-center gap-2 bg-red-500 text-black py-2 px-4 rounded-xl shadow hover:bg-red-600 transition col-span-full"
+                        className="flex items-center justify-center gap-2 bg-red-500 text-white py-2 px-4 rounded-xl shadow hover:bg-red-600 transition col-span-full"
                     >
                         <LogOut size={20} color="black" />
                         Logout
