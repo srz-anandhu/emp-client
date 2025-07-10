@@ -1,7 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginForm from "./pages/LoginForm";
-// import SignupForm from "./pages/SignupForm";
-import ProfilePage from "./pages/ProfilePage";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import ListEmpPage from "./pages/ListEmpPage";
 
 import AdminLoginPage from "./pages/AdminLoginPage";
@@ -10,21 +8,41 @@ import AdminDashPage from "./pages/AdminDashPage";
 import AddAdminPage from "./pages/AddAdminPage";
 
 function App() {
+
+  const ProtectedRoutes = ({ children }) => {
+    const refreshToken = localStorage.getItem("refreshToken");
+   // console.log("REFRESH TOKEN = ", refreshToken);
+
+    if (!refreshToken || refreshToken === "null" || refreshToken === "undefined") {
+      return <Navigate to="/" replace />;
+    }
+
+    return children
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-       {/* <Route path="/admin/login" element={ <AdminLoginPage/> } /> */}
-        <Route path="/admin/addemployee" element={ <AddEmpPage /> } />
-        <Route path="/admin/dashboard" element={ <AdminDashPage />} />
-        <Route path="/admin/add-admin" element={ < AddAdminPage/> } />
-        <Route path="/" element={ < AdminLoginPage /> } />
+        {/* Public Routes */}
+        <Route path="/" element={< AdminLoginPage />} />
 
-        {/* <Route path="/" element={<SignupForm />} /> */}
-        {/* Login for employees */}
-        <Route path="/login" element={ <LoginForm />} />
-        
-        <Route path="/profile" element={ <ProfilePage /> } />
-        <Route path="/employees" element={ <ListEmpPage /> } />
+        {/* Protected Routes */}
+        <Route path="/admin/addemployee" element={
+          <ProtectedRoutes>
+            <AddEmpPage />
+          </ProtectedRoutes>} />
+        <Route path="/admin/dashboard" element={
+          <ProtectedRoutes>
+            <AdminDashPage />
+          </ProtectedRoutes>} />
+        <Route path="/admin/add-admin" element={
+          <ProtectedRoutes>
+            < AddAdminPage />
+          </ProtectedRoutes>} />
+        <Route path="/employees" element={
+          <ProtectedRoutes>
+            <ListEmpPage />
+          </ProtectedRoutes>} />
       </Routes>
     </BrowserRouter>
   );
