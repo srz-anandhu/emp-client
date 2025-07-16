@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export default function AddEmployee() {
 
     const navigate = useNavigate();
 
-    const [employee, setEmployee] = useState({
+    let initialState = {
         employee_id: "",
         name: "",
         email: "",
@@ -15,11 +15,17 @@ export default function AddEmployee() {
         dob: "",
         position: "",
         salary: ""
-    });
+    }
+
+    const [employee, setEmployee] = useState(initialState);
 
     const [error, setError] = useState({
         employee_id: ""
     });
+
+    useEffect(() => {
+setEmployee(initialState)
+    },[]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -94,7 +100,7 @@ export default function AddEmployee() {
                         )}
                         <input onChange={handleChange}
                             type="text"
-                            autoComplete="new-password"
+                            autoComplete="off"
                             name="employee_id"
                             placeholder="Optional"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
