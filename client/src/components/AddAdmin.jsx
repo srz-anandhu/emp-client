@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -7,11 +7,17 @@ export default function AddAdmin() {
 
     const navigate = useNavigate();
 
-    const [adminForm, setAdminForm] = useState({
+    let init = {
         name: "",
         email:"",
         password: ""
-    });
+    }
+
+    const [adminForm, setAdminForm] = useState(init);
+
+    useEffect(()=> {
+        setAdminForm(init)
+    },[])
 
     const [error, setError] = useState(null);
 
@@ -68,7 +74,7 @@ export default function AddAdmin() {
         <div className="min-h-screen flex flex-col items-center  bg-blue-200">
             <h1 className="text-4xl font-bold text-blue-800 mb-10">Add Admin</h1>
             <div className=" bg-gradient-to-r from-blue-300 to-purple-300 w-130  bg-white shadow-lg rounded-2xl p-10">
-                <form onSubmit={handleSubmit} className="grid grid-cols-1  gap-6">
+                <form onSubmit={handleSubmit} autoComplete="off" className="grid grid-cols-1  gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Name </label>
                         <input onChange={handleChange}
@@ -83,7 +89,8 @@ export default function AddAdmin() {
                         <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <input onChange={handleChange}
                             type="email"
-                            name= "email"
+                            autoComplete="off"
+                            name= "admin-email"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
                             required
                         />
@@ -93,7 +100,8 @@ export default function AddAdmin() {
                         <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                         <input onChange={handleChange}
                             type="password"
-                            name="password"
+                            autoComplete="off"
+                            name="admin-password"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
                             required
                         />

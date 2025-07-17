@@ -101,7 +101,7 @@ setEmployee(initialState)
                         <input onChange={handleChange}
                             type="text"
                             autoComplete="off"
-                            name="employee_id"
+                            name="employeee_id"
                             placeholder="Optional"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
 
@@ -122,7 +122,7 @@ setEmployee(initialState)
                         <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <input onChange={handleChange}
                             type="email"
-                            name="email"
+                            name="new-email"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
                             required
                         />
@@ -132,7 +132,7 @@ setEmployee(initialState)
                         <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                         <input onChange={handleChange}
                             type="password"
-                            name="password"
+                            name="new-password"
                             className="w-full border border-gray-200 focus:border-2 focus:outline-none rounded-md px-3 py-2"
                             required
                         />
