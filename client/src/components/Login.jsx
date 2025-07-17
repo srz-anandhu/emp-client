@@ -22,7 +22,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await axios.post("http://localhost:8080/employee/login", formData,
+        const response = await axios.post("http://4.247.174.131:5000/employee/login", formData,
             {
                 headers : {
                     "Content-Type" : "application/json"
