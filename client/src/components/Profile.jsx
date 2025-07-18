@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,21 +5,6 @@ export default function Profile() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    const [isEditing, setIsEditing] = useState(false);
-    const [formData, setFormData] = useState({});
-
-    const [updateLoading, setUpdateLoading] = useState(false);
-    const [updateError, setUpdateError] = useState(null);
-
-    const [password, setPassword] = useState({
-        current_password: '',
-        new_password: '',
-        confirm_password: ''
-    });
-
-    // const [passwordUpdateError, setPasswordUpdateError] = useState(null);
-    // const [passwordUpdateLoading, setPasswordUpdateLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -49,7 +33,7 @@ export default function Profile() {
             console.log(parsedUser, 'user');
 
             setUser(parsedUser);
-            setFormData(parsedUser);
+            
             setLoading(false);
 
         } catch (err) {
@@ -281,7 +265,7 @@ export default function Profile() {
                         <div className="grid sm:grid-cols-3 gap-6">
                             <div>
                                 <p className="text-gray-700 text-sm">Employee ID</p>
-                                <h2 className="font-semibold text-lg">{user?.id || 'N/A'}</h2>
+                                <h2 className="font-semibold text-lg">{user?.employee_id || 'N/A'}</h2>
                             </div>
                             <div>
                                 <p className="text-gray-700 text-sm">Name</p>
@@ -289,7 +273,7 @@ export default function Profile() {
                             </div>
                             <div>
                                 <p className="text-gray-700 text-sm">Email</p>
-                                <h2 className="font-semibold text-lg">{user?.email || 'Not Provided'}</h2>
+                                <h2 className="overflow-hidden truncate font-semibold text-lg">{user?.email || 'Not Provided'}</h2>
                             </div>
                             <div>
                                 <p className="text-gray-700 text-sm">DOB</p>
