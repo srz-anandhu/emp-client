@@ -6,6 +6,8 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import AddEmpPage from "./pages/AddEmpPage";
 import AdminDashPage from "./pages/AdminDashPage";
 import AddAdminPage from "./pages/AddAdminPage";
+import LoginForm from "./pages/LoginForm"
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={< AdminLoginPage />} />
+        <Route path="/login" element= { <LoginForm />} />
 
         {/* Protected Routes */}
         <Route path="/admin/addemployee" element={
@@ -43,6 +46,12 @@ function App() {
           <ProtectedRoutes>
             <ListEmpPage />
           </ProtectedRoutes>} />
+
+        <Route path="/profile" element={
+          <ProtectedRoutes>
+            <ProfilePage />
+          </ProtectedRoutes> } />
+         
       </Routes>
     </BrowserRouter>
   );
